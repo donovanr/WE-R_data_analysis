@@ -3,6 +3,7 @@
 This repo contains the tools I use for data analysis in R of weighted ensemble simulations.
 
 The  file *WE_utils.R* contains three R functions that
+
 1. extract data from an hdf5 file
 2. make a weighted histogram of theta data
 3. set up defaults for plotting that data with ggplot2
