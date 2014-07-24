@@ -37,14 +37,14 @@ h <- ggplot() +
 		),
 	alpha=0.8
 	) +
-    geom_segment(
-    	aes(
-    		x=min(histcompare$pcoord),
-    		xend=max(histcompare$pcoord),
-    		y=1/172,
-    		yend=1/172
-    	)
-    )
+	geom_segment(
+		aes(
+			x=min(histcompare$pcoord),
+			xend=max(histcompare$pcoord),
+			y=1/172,
+			yend=1/172
+		)
+	)
 
 
 # pretty normal histogram plot
