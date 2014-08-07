@@ -14,7 +14,7 @@
 #     iter = the iteration that you're interested in (defaluts to last iteration)
 # output:
 #     data frame containing pcoords and weights for each segment in the specified iteration
-iter_data <- function(h5_file, iter=num_iters){
+iter_data <- function(h5_file, iter=num_iters, pcoord_dim=1){
 	
 	# necessary library
 	require(rhdf5)
@@ -29,15 +29,15 @@ iter_data <- function(h5_file, iter=num_iters){
 	
 	# extract pcoords
 	pcoord_alldata <- h5read(h5_file, pcoord_path, bit64conversion='double')
-	pcoord_dims <- dim(pcoord_alldata)
-	pcoords <- pcoord_alldata[pcoord_dims[1], pcoord_dims[2],] # grab last timepoint in iteration
+	this_iter_pcoord_dims <- dim(pcoord_alldata)
+	pcoords <- pcoord_alldata[ ,this_iter_pcoord_dims[2], ] # grab last timepoint in iteration
 	
 	# extract weights
 	seg_alldata <- h5read(h5_file, segindex_path, bit64conversion='double')
 	weights <- seg_alldata[ ,1]
 	
 	# make dataframe
-	iterdata <- data.frame(pcoord=pcoords,weight=weights)
+	iterdata <- data.frame(pcoord=pcoords[pcoord_dim,],weight=weights)
 	return(iterdata)
 }
 
